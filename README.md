@@ -1,4 +1,4 @@
-# Hard Mode - By tytyereal
+# Luck Level Readout - By tytyereal
 
 A very simple mod for [Backpack Hero](https://store.steampowered.com/app/1970580/Backpack_Hero/).
 
