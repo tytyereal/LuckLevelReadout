@@ -11,6 +11,15 @@ namespace LuckLevelReadout
         {
             static void Postfix(ref Player __instance, ref TextMeshProUGUI ___experienceText)
             {
+                if(___experienceText.text.ToLower().Equals("max level"))
+                {
+                    ___experienceText.text =
+                    "Max Level" +
+                    " uncommonLuck: " + __instance.uncommonLuck.ToString() +
+                    " rareLuck: " + __instance.rareLuck.ToString() +
+                    " legendaryLuck: " + __instance.legendaryLuck.ToString();
+                    return;
+                }
                 ___experienceText.text =
                 "Experience: " + __instance.experience.ToString() + " / " + __instance.experienceToLevels[__instance.level].ToString() +
                 " uncommonLuck: " + __instance.uncommonLuck.ToString() +
