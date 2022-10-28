@@ -6,25 +6,28 @@ namespace LuckLevelReadout
 {
     public class LuckLevelReadout : MelonMod
     {
-        [HarmonyPatch(typeof(Player), "Update")]
+        [HarmonyPatch(typeof(GameManager), "Start")]
+        class LuckStartPatch
+        {
+            static void Postfix(ref Player __instance, ref TextMeshProUGUI ___goldText)
+            {
+                ___goldText.enableWordWrapping = false;
+                ___goldText.wordWrappingRatios = 5000;
+                ___goldText.fontSizeMax = 45;
+                ___goldText.autoSizeTextContainer = true;
+            }
+        }
+
+        [HarmonyPatch(typeof(GameManager), "Update")]
         class LuckUpdatePatch
         {
-            static void Postfix(ref Player __instance, ref TextMeshProUGUI ___experienceText)
+            static void Postfix(ref GameManager __instance, ref TextMeshProUGUI ___goldText)
             {
-                if(__instance.level == __instance.chosenCharacter.levelUps.Count - 1)
-                {
-                    ___experienceText.text =
-                    "Max Level" +
-                    " uncommonLuck: " + __instance.uncommonLuck.ToString() +
-                    " rareLuck: " + __instance.rareLuck.ToString() +
-                    " legendaryLuck: " + __instance.legendaryLuck.ToString();
-                    return;
-                }
-                ___experienceText.text =
-                "Experience: " + __instance.experience.ToString() + " / " + __instance.chosenCharacter.levelUps[__instance.level+1].xpRequired +
-                " uncommonLuck: " + __instance.uncommonLuck.ToString() +
-                " rareLuck: " + __instance.rareLuck.ToString() +
-                " legendaryLuck: " + __instance.legendaryLuck.ToString();
+                ___goldText.text =
+                __instance.goldAmount +
+                " uncommonLuck: " + UnityEngine.Object.FindObjectOfType<Player>().uncommonLuck.ToString() +
+                " rareLuck: " + UnityEngine.Object.FindObjectOfType<Player>().rareLuck.ToString() +
+                " legendaryLuck: " + UnityEngine.Object.FindObjectOfType<Player>().legendaryLuck.ToString();
             }
         }
     }

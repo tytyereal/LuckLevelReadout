@@ -37,5 +37,5 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
 
-[assembly: MelonInfo(typeof(LuckLevelReadout.LuckLevelReadout), "LuckLevelReadout", "1.0.0", "tytyereal")]
+[assembly: MelonInfo(typeof(LuckLevelReadout.LuckLevelReadout), "LuckLevelReadout", "1.3.0", "tytyereal")]
 [assembly: MelonGame("", "")] 
